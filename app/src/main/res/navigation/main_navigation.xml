@@ -25,13 +25,13 @@
         android:label="title_fragment"
         tools:layout="@layout/title_fragment">
         <action
-            android:id="@+id/action_title_to_game"
+            android:id="@+id/action_titleFragmet_to_gameFragment"
             app:destination="@id/game_destination"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_left" />
+            app:popExitAnim="@anim/slide_out_left"  />
     </fragment>
     <fragment
         android:id="@+id/game_destination"
@@ -63,7 +63,6 @@
             app:popUpTo="@+id/title_destination" />
         <argument
             android:name="score"
-            android:defaultValue="0"
             app:argType="integer" />
     </fragment>
 </navigation>
