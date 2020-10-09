@@ -21,6 +21,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -60,12 +61,24 @@ class GameFragment : Fragment() {
             viewModel.onSkip()
         }
 
+        configurarObservadores()
+        return binding.root
+    }
+
+    fun configurarObservadores(){
         viewModel.word.observe(viewLifecycleOwner, Observer { newWord ->
             binding.wordText.text = newWord
         })
 
         viewModel.score.observe(viewLifecycleOwner, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
+        })
+
+        viewModel.eventGameFinish.observe(viewLifecycleOwner, Observer { hasFinished ->
+            if (hasFinished){
+                gameFinished()
+                viewModel.onGameFinishComplete()
+            }
         })
 
 //        val scoreObserver = Observer<Int> {
@@ -76,7 +89,6 @@ class GameFragment : Fragment() {
 //        viewModel.score.observe(this, Observer { newScore ->
 //            binding.scoreText.text = newScore.toString()
 //        })
-        return binding.root
     }
 
 //    override fun onResume() {
